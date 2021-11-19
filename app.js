@@ -11,21 +11,21 @@ app.use(express.static(__dirname + "/static"));
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
-app.get("/", function(req, res){
-    if(req.session.counter == null){
-        req.session.counter = 0;
+app.get("/", function(request, response){
+    if(request.session.counter == null){
+        request.session.counter = 0;
     }
     else {
-        req.session.counter += 1;
+        request.session.counter += 1;
     }
-    res.render("index", {counter : req.session.counter});
+    response.render("index", {counter : request.session.counter});
 })
 
-app.get("/plus", function(req, res){
-    req.session.counter += 1;
-    res.redirect("/");
+app.get("/addTwo", function(request, response){
+    request.session.counter += 1;
+    response.redirect("/");
 })
 
-app.listen(8000, function(){
-    console.log("Listening on port: 8000");
+app.listen(8080, function(){
+    console.log("Listening on port: 8080");
 })
